@@ -1,10 +1,17 @@
 /// <reference types="cypress" />
 
 describe('My First Test', () => {
-    it('Visits the Kitchen Sink', () => {
+    it('clicking "type" shows the right headings', () => {
         cy.visit('https://example.cypress.io')
-        cy.get('h1').contains('Kitchen Sink')
-        cy.contains('get').click()
-        cy.url().should('include', '/commands/querying')
+
+        cy.pause()
+
+        cy.contains('type').click()
+
+        cy.url().should('include', '/commands/actions')
+
+        cy.get('.action-email')
+          .type('fake@email.com')
+          .should('have.value', 'fake@email.com')
     })
 })
