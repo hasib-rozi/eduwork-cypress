@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "kdeneon",
   "license": "MIT",
+  "scripts": {
+    "cy:open": "cypress open"
+  },
   "devDependencies": {
     "cypress": "^10.8.0"
   }
