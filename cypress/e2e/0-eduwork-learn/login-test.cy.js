@@ -14,4 +14,8 @@ describe('Working with inputs', () => {
         cy.get('input[name="user_password"]').clear()
         cy.get('input[name="user_password"]').type('password')
     })
+    it('Should fill checkbox', () => {
+        cy.get('[type="checkbox"]').check()
+        cy.get('[type="checkbox"]').should('be.checked')
+    })
 })
