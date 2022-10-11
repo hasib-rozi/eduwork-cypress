@@ -10,7 +10,25 @@ describe('Login with custom commands', function() {
 
             cy.login(username, password)
 
-            cy.get('.alert-error').contains('Login and/or password are wrong')
+            cy.url().should('include', '/bank/account-summary.html')
+
+            cy.get('a').contains('Pay Bills').click()
+        })
+    })
+
+    it('Should pay the bills', () => {
+        cy.fixture("pay-bills").then(payment => {
+            const payee = payment.payee
+            const account = payment.account
+            const amount = payment.amount
+            const date = payment.date
+            const description = payment.description
+            
+            cy.Payment(payee, account, amount, date, description)
+            
+            cy.clickLink('Pay Bill')
+
+            cy.get('.span-header').contains('The payment was successfully submitted.')
         })
     })
 })
