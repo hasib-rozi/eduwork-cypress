@@ -38,26 +38,22 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
   
     return originalFn(element, text, options)
   })
-
+// Login custom command
 Cypress.Commands.add('login', (username, password) => {
     cy.clearCookies()
     cy.clearLocalStorage()
     cy.get('#user_login').type('username')
-    cy.get('#user_password').type('password', { sensitive: true })
+    cy.get('#user_password').type('password', { sensitive: true }) // Enable asterisk password on test runner
+    cy.get('[type ="checkbox"]').check()
     cy.get('input[name="submit"]').click()
 })
-
-Cypress.Commands.add('clickLink', (label) => {
-  cy.get('a').contains('Pay Bill').click()
-})
-
+// Pay Bills custom command
 Cypress.Commands.add('Payment', (sp_payee, sp_account, sp_amount, sp_date, sp_description) => {
-  cy.clearCookies()
-  cy.clearLocalStorage()
   cy.get('#sp_payee').select('Apple').should('have.value', 'apple')
-  cy.get('#sp_account').select('Savings').should('have.value', '1')
+  cy.get('#sp_account').select('Checking').should('have.value', '2')
   cy.get('#sp_amount').type('100')
-  cy.get('#sp_date').type('2022-08-01')
+  cy.get('#sp_date').click()
+  cy.contains('5').click()
   cy.get('#sp_description').type('I want to pay my monthly bill')
-  cy.get('input[name="submit"]').click()
+  cy.get('#pay_saved_payees').click()
 })

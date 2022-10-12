@@ -25,10 +25,6 @@ describe('Login with custom commands', function() {
             const description = payment.description
             
             cy.Payment(payee, account, amount, date, description)
-            
-            cy.clickLink('Pay Bill')
-
-            cy.get('.span-header').contains('The payment was successfully submitted.')
         })
     })
 })

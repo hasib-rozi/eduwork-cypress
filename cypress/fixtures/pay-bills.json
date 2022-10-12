@@ -1,7 +1,7 @@
 {
     "payee": "Apple",
-    "account": "Savings",
-    "amount": "100.00",
-    "date": "2022-08-01",
+    "account": "Checking",
+    "amount": "100",
+    "date": "2022-10-05",
     "description": "I want to pay my monthly bill"
 }
